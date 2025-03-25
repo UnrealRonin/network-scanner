@@ -1,0 +1,34 @@
+import socket
+import ipaddress
+import argparse
+from concurrent.futures import ThreadPoolExecutor
+
+def scan_host(host, port):
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.settimeout(1)
+            s.connect((host, port))
+            return f"[+] {host}:{port} is open"
+    except (socket.timeout, ConnectionRefusedError):
+        return None
+
+def scan_network(network, ports):
+    print(f"Scanning network: {network}")
+    with ThreadPoolExecutor(max_workers=50) as executor:
+        futures = []
+        for ip in ipaddress.IPv4Network(network, strict=False):
+            for port in ports:
+                futures.append(executor.submit(scan_host, str(ip), port))
+        
+        for future in futures:
+            result = future.result()
+            if result:
+                print(result)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Simple Network Scanner")
+    parser.add_argument("-n", "--network", required=True, help="Network range (e.g., 192.168.1.0/24)")
+    parser.add_argument("-p", "--ports", nargs='+', type=int, required=True, help="Ports to scan (e.g., 22 80 443)")
+    args = parser.parse_args()
+
+    scan_network(args.network, args.ports)
