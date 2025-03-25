@@ -2,15 +2,15 @@
 This is a simple yet powerful Python-based network scanner that detects active devices and open ports within a given network range. Built with multi-threading, it efficiently scans multiple hosts and ports, making it a handy tool for cybersecurity professionals and network administrators.
 
 
-📡 Network Scanner
+📡 Network Scanner:
 This is a simple yet powerful Python-based network scanner that detects active devices and open ports within a given network range. Built with multi-threading, it efficiently scans multiple hosts and ports, making it a handy tool for cybersecurity professionals and network administrators.
 
-🚀 Features
+🚀 Features:
 ✅ Scans an entire subnet
 ✅ Identifies open ports on active hosts
 ✅ Uses multi-threading for speed
 ✅ Command-line interface for easy usage
-⚠️ AI and Cybersecurity Risks
+⚠️ AI and Cybersecurity Risks:
 While AI-generated scripts like this can enhance security research, they also pose ethical concerns:
 
 Malicious Use: AI can lower the entry barrier for cybercriminals, enabling automated attacks.
